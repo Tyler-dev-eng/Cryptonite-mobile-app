@@ -1,4 +1,4 @@
-package com.tylerdev.cryptonite
+package com.tylerdev.cryptonite.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tylerdev.cryptonite.presentation.ui.theme.CryptoniteTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

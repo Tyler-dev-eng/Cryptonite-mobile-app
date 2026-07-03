@@ -1,4 +1,4 @@
-package com.tylerdev.cryptonite.ui.theme
+package com.tylerdev.cryptonite.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

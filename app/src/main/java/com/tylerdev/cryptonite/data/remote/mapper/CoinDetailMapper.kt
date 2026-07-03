@@ -2,7 +2,6 @@ package com.tylerdev.cryptonite.data.remote.mapper
 
 import com.tylerdev.cryptonite.data.remote.dto.CoinDetailDto
 import com.tylerdev.cryptonite.domain.model.CoinDetailDomainModel
-import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 
 fun CoinDetailDto.toCoinDetailDomainModel(): CoinDetailDomainModel {
     return CoinDetailDomainModel (

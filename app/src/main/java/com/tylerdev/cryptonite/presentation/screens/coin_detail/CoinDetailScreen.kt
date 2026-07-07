@@ -19,13 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.CoinTag
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.TeamListItem
+import com.tylerdev.cryptonite.presentation.screens.coin_detail.state.CoinDetailUiState
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.viewModel.CoinDetailViewModel
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -37,15 +37,15 @@ fun CoinDetailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Box(modifier = modifier.fillMaxSize()) {
-        when {
-            state.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            state.error.isNotBlank() -> Text(
-                text = state.error,
+        when (val currentState = state) {
+            is CoinDetailUiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            is CoinDetailUiState.Error -> Text(
+                text = currentState.message,
                 modifier = Modifier.align(Alignment.Center)
             )
 
-            state.coin != null -> {
-                val coin = state.coin!!
+            is CoinDetailUiState.Success -> {
+                val coin = currentState.coin
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(20.dp)

@@ -10,10 +10,10 @@ class CoinRepositoryImpl @Inject constructor(
     private val api: CoinPaprikaApi
 ): CoinRepository {
     override suspend fun getCoins(): List<CoinDto> {
-        TODO("Not yet implemented")
+        return api.getCoins()
     }
 
     override suspend fun getCoinById(coinId: String): CoinDetailDto {
-        TODO("Not yet implemented")
+        return api.getCoinById(coinId)
     }
 }

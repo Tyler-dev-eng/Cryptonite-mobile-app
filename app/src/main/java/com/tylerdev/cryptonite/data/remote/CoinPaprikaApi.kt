@@ -1,5 +1,6 @@
 package com.tylerdev.cryptonite.data.remote
 
+import com.tylerdev.cryptonite.data.remote.dto.CoinDetailDto
 import com.tylerdev.cryptonite.data.remote.dto.CoinDto
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,6 +14,6 @@ interface CoinPaprikaApi {
     suspend fun getCoins(): List<CoinDto>
 
     @GET("v1/coins/{coinId}")
-    suspend fun getCoinById(@Path("coinId") coinId: String)
+    suspend fun getCoinById(@Path("coinId") coinId: String): CoinDetailDto
 
 }

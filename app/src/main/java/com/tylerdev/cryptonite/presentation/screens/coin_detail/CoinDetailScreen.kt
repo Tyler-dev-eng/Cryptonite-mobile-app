@@ -24,6 +24,8 @@ import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tylerdev.cryptonite.data.remote.dto.TeamMember
+import com.tylerdev.cryptonite.domain.model.CoinDetailDomainModel
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.CoinTag
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.TeamListItem
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.state.CoinDetailUiState
@@ -35,7 +37,6 @@ private val TagSpacing = 10.dp
 private val TeamListItemPadding = 10.dp
 private const val CoinNameRowWeight = 8f
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CoinDetailScreen(
     modifier: Modifier = Modifier,
@@ -58,65 +59,80 @@ fun CoinDetailScreen(
                     contentPadding = PaddingValues(ScreenPadding)
                 ) {
                     item {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "${coin.rank}. ${coin.name} (${coin.symbol})",
-                                style = MaterialTheme.typography.headlineMedium,
-                                modifier = Modifier.weight(CoinNameRowWeight)
-
-                            )
-                            Text(
-                                text = if (coin.isActive) "active" else "inactive",
-                                color = if (coin.isActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
-                                modifier = Modifier.align(Alignment.CenterVertically)
-                            )
-                        }
+                        CoinHeader(coin)
                         Spacer(modifier = Modifier.height(SectionSpacing))
                         Text(
                             text = coin.description,
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Spacer(modifier = Modifier.height(SectionSpacing))
-                        Text(
-                            text = "Tags",
-                            style = MaterialTheme.typography.headlineSmall
-                        )
-                        Spacer(modifier = Modifier.height(SectionSpacing))
-                        FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(TagSpacing),
-                            verticalArrangement = Arrangement.spacedBy(TagSpacing)
-                        ) {
-                            coin.tags.forEach { tag ->
-                                CoinTag(tag = tag)
-                            }
-                        }
+                        CoinTagsSection(coin.tags)
                         Spacer(modifier = Modifier.height(SectionSpacing))
                         if (coin.team.isNotEmpty()) {
-                            Text(
-                                text = "Team members",
-                                style = MaterialTheme.typography.headlineSmall
-                            )
-                            Spacer(modifier = Modifier.height(SectionSpacing))
-                            coin.team.forEach { teamMember ->
-                                TeamListItem(
-                                    teamMember = teamMember,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(TeamListItemPadding)
-                                )
-                                HorizontalDivider(
-                                    Modifier,
-                                    DividerDefaults.Thickness,
-                                    DividerDefaults.color
-                                )
-                            }
+                            TeamSection(coin.team)
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun CoinHeader(coin: CoinDetailDomainModel) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.weight(CoinNameRowWeight)
+        )
+        Text(
+            text = if (coin.isActive) "active" else "inactive",
+            color = if (coin.isActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
+            modifier = Modifier.align(Alignment.CenterVertically)
+        )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun CoinTagsSection(tags: List<String>) {
+    Text(
+        text = "Tags",
+        style = MaterialTheme.typography.headlineSmall
+    )
+    Spacer(modifier = Modifier.height(SectionSpacing))
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(TagSpacing),
+        verticalArrangement = Arrangement.spacedBy(TagSpacing)
+    ) {
+        tags.forEach { tag ->
+            CoinTag(tag = tag)
+        }
+    }
+}
+
+@Composable
+private fun TeamSection(team: List<TeamMember>) {
+    Text(
+        text = "Team members",
+        style = MaterialTheme.typography.headlineSmall
+    )
+    Spacer(modifier = Modifier.height(SectionSpacing))
+    team.forEach { teamMember ->
+        TeamListItem(
+            teamMember = teamMember,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(TeamListItemPadding)
+        )
+        HorizontalDivider(
+            Modifier,
+            DividerDefaults.Thickness,
+            DividerDefaults.color
+        )
     }
 }

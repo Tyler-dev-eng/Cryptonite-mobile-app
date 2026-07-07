@@ -7,11 +7,11 @@ fun CoinDetailDto.toCoinDetailDomainModel(): CoinDetailDomainModel {
     return CoinDetailDomainModel (
         coinId = id,
         name = name,
-        description = description,
+        description = description.orEmpty(),
         symbol = symbol,
-        rank = rank,
-        isActive = isActive,
-        tags = tags.map { it.name },
-        team = team
+        rank = rank ?: 0,
+        isActive = isActive ?: false,
+        tags = tags?.map { it.name } ?: emptyList(),
+        team = team ?: emptyList()
     )
 }

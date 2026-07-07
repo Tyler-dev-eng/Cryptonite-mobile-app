@@ -1,5 +1,7 @@
 package com.tylerdev.cryptonite.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tylerdev.cryptonite.data.remote.CoinPaprikaApi
 import dagger.Module
 import dagger.Provides
@@ -16,10 +18,19 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePaprikaApi(): CoinPaprikaApi {
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePaprikaApi(okHttpClient: OkHttpClient, moshi: Moshi): CoinPaprikaApi {
         return Retrofit.Builder()
             .baseUrl(CoinPaprikaApi.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(CoinPaprikaApi::class.java)
     }

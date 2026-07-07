@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 
@@ -27,7 +28,16 @@ fun CoinListItem(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = coin.name, style = MaterialTheme.typography.bodyLarge)
-        Text(text = coin.symbol, style = MaterialTheme.typography.bodyMedium)
+        Text(
+            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
+            style = MaterialTheme.typography.bodyLarge,
+            overflow = TextOverflow.Ellipsis
+            )
+
+        Text(
+            text = if (coin.isActive) "active" else "inactive",
+            color = if (coin.isActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
+            fontStyle = MaterialTheme.typography.bodyMedium.fontStyle
+        )
     }
 }

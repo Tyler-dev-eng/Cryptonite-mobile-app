@@ -122,17 +122,19 @@ private fun TeamSection(team: List<TeamMember>) {
         style = MaterialTheme.typography.headlineSmall
     )
     Spacer(modifier = Modifier.height(SectionSpacing))
-    team.forEach { teamMember ->
+    team.forEachIndexed { index, teamMember ->
         TeamListItem(
             teamMember = teamMember,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(TeamListItemPadding)
         )
-        HorizontalDivider(
-            Modifier,
-            DividerDefaults.Thickness,
-            DividerDefaults.color
-        )
+        if (index != team.lastIndex) {
+            HorizontalDivider(
+                Modifier,
+                DividerDefaults.Thickness,
+                DividerDefaults.color
+            )
+        }
     }
 }

@@ -14,6 +14,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 
+private val HorizontalPadding = 16.dp
+private val VerticalPadding = 12.dp
+
 @Composable
 fun CoinListItem(
     coin: CoinDomainModel,
@@ -24,7 +27,7 @@ fun CoinListItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onClick(coin) }
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(horizontal = HorizontalPadding, vertical = VerticalPadding),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

@@ -87,23 +87,25 @@ fun CoinDetailScreen(
                             }
                         }
                         Spacer(modifier = Modifier.height(15.dp))
-                        Text(
-                            text = "Team members",
-                            style = MaterialTheme.typography.headlineSmall
-                        )
-                        Spacer(modifier = Modifier.height(15.dp))
-                        coin.team.forEach { teamMember ->
-                            TeamListItem(
-                                teamMember = teamMember,
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(10.dp)
+                        if (coin.team.isNotEmpty()) {
+                            Text(
+                                text = "Team members",
+                                style = MaterialTheme.typography.headlineSmall
                             )
-                            HorizontalDivider(
-                                Modifier,
-                                DividerDefaults.Thickness,
-                                DividerDefaults.color
-                            )
+                            Spacer(modifier = Modifier.height(15.dp))
+                            coin.team.forEach { teamMember ->
+                                TeamListItem(
+                                    teamMember = teamMember,
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(10.dp)
+                                )
+                                HorizontalDivider(
+                                    Modifier,
+                                    DividerDefaults.Thickness,
+                                    DividerDefaults.color
+                                )
+                            }
                         }
                     }
                 }

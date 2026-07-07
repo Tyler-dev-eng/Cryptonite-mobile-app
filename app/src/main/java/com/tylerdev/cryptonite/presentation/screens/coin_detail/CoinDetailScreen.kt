@@ -28,6 +28,11 @@ import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.TeamL
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.state.CoinDetailUiState
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.viewModel.CoinDetailViewModel
 
+private val ScreenPadding = 20.dp
+private val SectionSpacing = 15.dp
+private val TagSpacing = 10.dp
+private val TeamListItemPadding = 10.dp
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CoinDetailScreen(
@@ -48,7 +53,7 @@ fun CoinDetailScreen(
                 val coin = currentState.coin
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(20.dp)
+                    contentPadding = PaddingValues(ScreenPadding)
                 ) {
                     item {
                         Row(
@@ -67,38 +72,38 @@ fun CoinDetailScreen(
                                 modifier = Modifier.align(Alignment.CenterVertically)
                             )
                         }
-                        Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(SectionSpacing))
                         Text(
                             text = coin.description,
                             style = MaterialTheme.typography.bodyMedium
                         )
-                        Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(SectionSpacing))
                         Text(
                             text = "Tags",
                             style = MaterialTheme.typography.headlineSmall
                         )
-                        Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(SectionSpacing))
                         FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(10.dp),
-                            verticalArrangement = Arrangement.spacedBy(10.dp)
+                            horizontalArrangement = Arrangement.spacedBy(TagSpacing),
+                            verticalArrangement = Arrangement.spacedBy(TagSpacing)
                         ) {
                             coin.tags.forEach { tag ->
                                 CoinTag(tag = tag)
                             }
                         }
-                        Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(SectionSpacing))
                         if (coin.team.isNotEmpty()) {
                             Text(
                                 text = "Team members",
                                 style = MaterialTheme.typography.headlineSmall
                             )
-                            Spacer(modifier = Modifier.height(15.dp))
+                            Spacer(modifier = Modifier.height(SectionSpacing))
                             coin.team.forEach { teamMember ->
                                 TeamListItem(
                                     teamMember = teamMember,
                                     modifier = Modifier
                                         .fillMaxSize()
-                                        .padding(10.dp)
+                                        .padding(TeamListItemPadding)
                                 )
                                 HorizontalDivider(
                                     Modifier,

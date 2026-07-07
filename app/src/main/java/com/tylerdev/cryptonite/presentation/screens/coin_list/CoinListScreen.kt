@@ -14,6 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import  androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 import com.tylerdev.cryptonite.presentation.screens.coin_list.components.CoinListItem
+import com.tylerdev.cryptonite.presentation.screens.coin_list.state.CoinListUiState
 import com.tylerdev.cryptonite.presentation.screens.coin_list.viewModel.CoinListViewModel
 
 @Composable
@@ -25,14 +26,14 @@ fun CoinListScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Box(modifier = modifier.fillMaxSize()) {
-        when {
-            state.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            state.error.isNotBlank() -> Text(
-                text = state.error,
+        when (val currentState = state) {
+            is CoinListUiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            is CoinListUiState.Error -> Text(
+                text = currentState.message,
                 modifier = Modifier.align(Alignment.Center)
             )
-            else -> LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(state.coins, key = { it.id }) { coin ->
+            is CoinListUiState.Success -> LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(currentState.coins, key = { it.id }) { coin ->
                     CoinListItem(coin = coin, onClick = onCoinClick)
                 }
             }

@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import com.tylerdev.cryptonite.data.remote.dto.TeamMember
+import com.tylerdev.cryptonite.domain.model.TeamMemberDomainModel
 
 private val NameToPositionSpacing = 4.dp
 
 @Composable
 fun TeamListItem(
-    teamMember: TeamMember,
+    teamMember: TeamMemberDomainModel,
     modifier: Modifier = Modifier
 ) {
     Column(

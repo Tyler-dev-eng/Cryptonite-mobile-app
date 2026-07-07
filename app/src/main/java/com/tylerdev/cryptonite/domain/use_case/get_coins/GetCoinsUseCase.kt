@@ -1,7 +1,6 @@
 package com.tylerdev.cryptonite.domain.use_case.get_coins
 
 import com.tylerdev.cryptonite.common.Resource
-import com.tylerdev.cryptonite.data.remote.mapper.toCoinDomainModel
 import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 import com.tylerdev.cryptonite.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +15,7 @@ class GetCoinsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<CoinDomainModel>>> = flow {
         try {
             emit(Resource.Loading())
-            val coins = repository.getCoins().map { it.toCoinDomainModel() }
+            val coins = repository.getCoins()
             emit(Resource.Success(coins))
         } catch(e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))

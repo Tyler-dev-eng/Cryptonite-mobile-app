@@ -1,7 +1,5 @@
 package com.tylerdev.cryptonite.domain.model
 
-import com.tylerdev.cryptonite.data.remote.dto.TeamMember
-
 data class CoinDetailDomainModel (
     val coinId: String,
     val name: String,
@@ -10,5 +8,5 @@ data class CoinDetailDomainModel (
     val rank: Int,
     val isActive: Boolean,
     val tags: List<String>,
-    val team: List<TeamMember>
+    val team: List<TeamMemberDomainModel>
 )

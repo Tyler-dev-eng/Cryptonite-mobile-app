@@ -24,8 +24,8 @@ import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.tylerdev.cryptonite.data.remote.dto.TeamMember
 import com.tylerdev.cryptonite.domain.model.CoinDetailDomainModel
+import com.tylerdev.cryptonite.domain.model.TeamMemberDomainModel
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.CoinTag
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.components.TeamListItem
 import com.tylerdev.cryptonite.presentation.screens.coin_detail.state.CoinDetailUiState
@@ -116,7 +116,7 @@ private fun CoinTagsSection(tags: List<String>) {
 }
 
 @Composable
-private fun TeamSection(team: List<TeamMember>) {
+private fun TeamSection(team: List<TeamMemberDomainModel>) {
     Text(
         text = "Team members",
         style = MaterialTheme.typography.headlineSmall

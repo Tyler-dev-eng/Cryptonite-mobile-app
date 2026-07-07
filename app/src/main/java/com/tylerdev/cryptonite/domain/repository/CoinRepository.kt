@@ -1,11 +1,11 @@
 package com.tylerdev.cryptonite.domain.repository
 
-import com.tylerdev.cryptonite.data.remote.dto.CoinDetailDto
-import com.tylerdev.cryptonite.data.remote.dto.CoinDto
+import com.tylerdev.cryptonite.domain.model.CoinDetailDomainModel
+import com.tylerdev.cryptonite.domain.model.CoinDomainModel
 
 interface CoinRepository {
 
-    suspend fun getCoins(): List<CoinDto>
+    suspend fun getCoins(): List<CoinDomainModel>
 
-    suspend fun getCoinById(coinId: String): CoinDetailDto
+    suspend fun getCoinById(coinId: String): CoinDetailDomainModel
 }

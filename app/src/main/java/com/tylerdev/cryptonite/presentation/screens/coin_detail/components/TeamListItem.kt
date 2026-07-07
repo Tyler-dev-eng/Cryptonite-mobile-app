@@ -12,6 +12,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import com.tylerdev.cryptonite.data.remote.dto.TeamMember
 
+private val NameToPositionSpacing = 4.dp
+
 @Composable
 fun TeamListItem(
     teamMember: TeamMember,
@@ -25,7 +27,7 @@ fun TeamListItem(
             text = teamMember.name,
             style = MaterialTheme.typography.titleLarge
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(NameToPositionSpacing))
         teamMember.position?.let {
             Text(
                 text = it,

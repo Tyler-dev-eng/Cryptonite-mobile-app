@@ -11,6 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+private val BorderWidth = 1.dp
+private val CornerRadius = 100.dp
+private val TagPadding = 10.dp
+
 @Composable
 fun CoinTag(
     tag: String
@@ -18,11 +22,11 @@ fun CoinTag(
     Box(
         modifier = Modifier
             .border(
-                width = 1.dp,
+                width = BorderWidth,
                 color = MaterialTheme.colorScheme.primary,
-                shape = RoundedCornerShape(100.dp)
+                shape = RoundedCornerShape(CornerRadius)
             )
-            .padding(10.dp)
+            .padding(TagPadding)
     ) {
         Text(
             text = tag,

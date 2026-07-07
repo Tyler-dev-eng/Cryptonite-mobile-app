@@ -32,6 +32,7 @@ private val ScreenPadding = 20.dp
 private val SectionSpacing = 15.dp
 private val TagSpacing = 10.dp
 private val TeamListItemPadding = 10.dp
+private const val CoinNameRowWeight = 8f
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -63,7 +64,7 @@ fun CoinDetailScreen(
                             Text(
                                 text = "${coin.rank}. ${coin.name} (${coin.symbol})",
                                 style = MaterialTheme.typography.headlineMedium,
-                                modifier = Modifier.weight(8f)
+                                modifier = Modifier.weight(CoinNameRowWeight)
 
                             )
                             Text(

@@ -8,6 +8,7 @@ Data comes from the [CoinPaprika API](https://coinpaprika.com/api/).
 
 <p>
   <img src="docs/screenshots/splash.png" width="250" alt="Splash screen" />
+  <img src="docs/screenshots/coin-list.png" width="250" alt="Coin list screen showing ranked coins with symbol and active status" />
   <img src="docs/screenshots/coin-detail.png" width="250" alt="Coin detail screen showing Bitcoin's description, tags, and team members" />
 </p>
 

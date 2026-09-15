@@ -4,6 +4,13 @@ A small Android app for browsing cryptocurrency listings and coin details, built
 
 Data comes from the [CoinPaprika API](https://coinpaprika.com/api/).
 
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/splash.png" width="250" alt="Splash screen" />
+  <img src="docs/screenshots/coin-detail.png" width="250" alt="Coin detail screen showing Bitcoin's description, tags, and team members" />
+</p>
+
 ## Features
 
 - Browse the full list of coins with rank, name, symbol, and active status
